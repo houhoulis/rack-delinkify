@@ -1,0 +1,38 @@
+= Rack::Delinkify
+
+== Description
+
+To prevent or clean up unwanted links from your Rack or Rack-dependent app,
+use Rack::Delinkify.
+
+In default usage, links are converted from HTML <code><a></code> elements
+to <code><span></code>s.  The links' text components are rendered.  You can
+optionally set Rack::Delinkify to obliterate the entire HTML element,
+rather than render the text component.
+
+Rack::Delinkify also provides the option to specify a whitelist of domain
+names.  Links to those domains (and subdomains thereof) are preserved in
+the HTML response.
+
+The options can be used together, in which case the link elements that are
+not preserved by the whitelist are obliterated.  Rack::Delinkify could be
+<code>use</code>d in this way to defang an attack of comment-link-spamming.
+
+== Usage
+
+[Disable all links, render links' text components]
+ <code>use Rack::Delinkify</code>
+
+[Eliminate all <code><a></code> elements entirely, including text component]
+ <code>use Rack::Delinkify, :obliterate => true</code>
+
+[Preserve links to domain names qualified to any level]
+ <code>use Rack::Delinkify, :except => [ "\example.com", "edu",
+ "\www.dhs.gov" ]</code>
+
+== License
+
+Rack::Delinkify is released under the
+{MIT License}[http://www.opensource.org/licenses/MIT]; details are in the
+LICENSE file.
+

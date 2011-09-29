@@ -1,0 +1,14 @@
+log/*
+tmp/*
+tmp/*/*
+db/*.sqlite3
+*~
+*/*~
+**/*~
+.*.swp
+*/.*.swp
+**/.*.swp
+.bundle
+push*
+.rvmrc
+
