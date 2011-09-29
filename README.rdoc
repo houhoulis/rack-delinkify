@@ -20,6 +20,8 @@ not preserved by the whitelist are obliterated.  Rack::Delinkify could be
 
 == Usage
 
+Use as you would any other Rack ware in your stack.
+
 [Disable all links, render links' text components]
  <code>use Rack::Delinkify</code>
 
@@ -27,8 +29,8 @@ not preserved by the whitelist are obliterated.  Rack::Delinkify could be
  <code>use Rack::Delinkify, :obliterate => true</code>
 
 [Preserve links to domain names qualified to any level]
- <code>use Rack::Delinkify, :except => [ "\example.com", "edu",
- "\www.dhs.gov" ]</code>
+ <code>use Rack::Delinkify, :except => [ "example.com", "edu",
+ "ajax.googleapis.com" ]</code>
 
 == License
 
