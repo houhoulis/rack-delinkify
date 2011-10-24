@@ -9,6 +9,19 @@ describe "RackDelinkify" do
     @pages = [ @github_page, @blog_page ]
   end
 
+  def has_links?(page)
+    page.include?("<a")
+  end
+  def contains_link_content?(page, string = "houhoulis")
+    page.include?(string)
+  end
+  def links_to?(page, domain = "github.com")
+    page =~ /href="https?:\/\/(\w+.)?#{domain}/
+  end
+  def has_relative_links?(page)
+    page =~ /href="\/?[^.]+\/?"/
+  end
+
   context "setup" do
     example "blog_page loads and is long" do
       @blog_page.length.should be > 1000
@@ -30,6 +43,13 @@ describe "RackDelinkify" do
     xit "obliterates all links" do
     end
     xit "preserves whitelisted links, shows others' text" do
+    end
+    it "function tests" do
+      has_links?(@github_page).should be_true
+      has_links?(@blog_page).should be_true
+      links_to?(@github_page).should be_true
+      links_to?(@blog_page, "kernel.org").should be_true
+      links_to?(@blog_page, "universalhub.com").should be_false
     end
     xit "preserves whitelisted links, obliterates others" do
     end
